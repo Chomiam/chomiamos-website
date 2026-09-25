@@ -2865,5 +2865,401 @@ code, pre, .mono {
   }
 }
 
+/* ==========================================================================
+   ARCADE LEADERBOARD & GITHUB PILOT PROFILES
+   Classement Mondial des Pilotes • Hall of Fame Catppuccin
+   ========================================================================== */
+
+.gameover-auth-box {
+  background: rgba(49, 50, 68, 0.45);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  margin-bottom: 18px;
+  font-size: 0.82rem;
+  color: var(--subtext1);
+  text-align: center;
+  width: 100%;
+}
+
+.gameover-auth-box a, .gameover-auth-btn {
+  color: var(--mauve);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.arcade-leaderboard-section {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+/* Pilot Authentication Banner */
+.arcade-pilot-banner {
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.pilot-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pilot-avatar-wrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.pilot-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--mauve);
+  box-shadow: 0 0 12px rgba(203, 166, 247, 0.35);
+  background: var(--surface0);
+}
+
+.pilot-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--overlay0);
+  border: 2px solid var(--mantle);
+  transition: background var(--transition-normal);
+}
+
+.pilot-online-dot.active {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+.pilot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pilot-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pilot-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.pilot-subtext {
+  font-size: 0.84rem;
+  color: var(--subtext0);
+  max-width: 480px;
+  line-height: 1.4;
+}
+
+.pilot-auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.pilot-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--crust);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius-full);
+  padding: 4px 6px 4px 14px;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: border-color var(--transition-fast);
+}
+
+.pilot-input-group:focus-within {
+  border-color: var(--mauve);
+}
+
+.gh-at-prefix {
+  color: var(--mauve);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.arcade-gh-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  width: 160px;
+}
+
+.pilot-connected-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pilot-personal-record {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 30, 46, 0.8);
+  border: 1px solid var(--surface0);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.pilot-personal-record .record-label {
+  color: var(--overlay1);
+}
+
+.pilot-personal-record .record-val {
+  font-family: var(--font-arcade);
+  font-size: 0.72rem;
+  color: var(--green);
+  text-shadow: 0 0 6px rgba(166, 227, 161, 0.4);
+}
+
+/* Leaderboard Card & Table */
+.arcade-leaderboard-card {
+  background: var(--crust);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md), 0 0 35px rgba(203, 166, 247, 0.1);
+}
+
+.leaderboard-header {
+  padding: 20px 24px;
+  background: var(--mantle);
+  border-bottom: 1px solid var(--surface0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.leaderboard-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--mauve);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.leaderboard-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.leaderboard-desc {
+  font-size: 0.84rem;
+  color: var(--subtext0);
+  margin-top: 2px;
+}
+
+.leaderboard-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--green);
+  background: rgba(166, 227, 161, 0.1);
+  border: 1px solid rgba(166, 227, 161, 0.25);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.leaderboard-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.leaderboard-table th {
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--overlay1);
+  border-bottom: 1px solid var(--surface0);
+  background: rgba(24, 24, 37, 0.7);
+  white-space: nowrap;
+}
+
+.leaderboard-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(49, 50, 68, 0.4);
+  font-size: 0.88rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background var(--transition-fast);
+}
+
+.leaderboard-table tr:hover td {
+  background: rgba(30, 30, 46, 0.5);
+}
+
+.leaderboard-table tr.is-current-user td {
+  background: linear-gradient(90deg, rgba(203, 166, 247, 0.14) 0%, rgba(137, 180, 250, 0.05) 100%);
+  border-top: 1px solid rgba(203, 166, 247, 0.3);
+  border-bottom: 1px solid rgba(203, 166, 247, 0.3);
+}
+
+.leaderboard-table tr.is-current-user td:first-child {
+  border-left: 3px solid var(--mauve);
+}
+
+.rank-cell {
+  font-family: var(--font-arcade);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rank-1 { color: var(--yellow); }
+.rank-2 { color: var(--subtext1); }
+.rank-3 { color: var(--peach); }
+
+.pilot-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pilot-cell-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--surface1);
+  background: var(--surface0);
+}
+
+.pilot-cell-link {
+  color: var(--mauve);
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.pilot-cell-link:hover {
+  text-decoration: underline;
+  color: var(--pink);
+}
+
+.pilot-cell-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+.score-cell {
+  font-family: var(--font-arcade);
+  font-size: 0.82rem;
+  color: var(--green);
+  text-shadow: 0 0 8px rgba(166, 227, 161, 0.4);
+}
+
+.wave-cell {
+  font-family: var(--font-mono);
+  color: var(--sapphire);
+  font-weight: 600;
+}
+
+.kills-cell {
+  font-family: var(--font-mono);
+  color: var(--peach);
+  font-weight: 600;
+}
+
+.ship-cell {
+  color: var(--subtext0);
+  font-size: 0.82rem;
+}
+
+.leaderboard-footer {
+  padding: 14px 24px;
+  background: var(--mantle);
+  border-top: 1px solid var(--surface0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.78rem;
+  color: var(--subtext0);
+  flex-wrap: wrap;
+}
+
+.leaderboard-footer-sync {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mauve);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 768px) {
+  .arcade-pilot-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pilot-auth-actions {
+    width: 100%;
+  }
+  .pilot-input-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .arcade-gh-input {
+    width: 100%;
+  }
+}
+
+
 
 

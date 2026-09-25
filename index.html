@@ -655,6 +655,11 @@
                 🎉 NOUVEAU RECORD HISTORIQUE DU TERMINAL ! 🎉
               </div>
 
+              <!-- GitHub Score Registration Prompt in Game Over -->
+              <div class="gameover-auth-box" id="gameOverAuthBox">
+                <!-- Dynamically populated -->
+              </div>
+
               <button class="btn btn-primary btn-arcade-start" id="arcadeRestartBtn">
                 <span>🔄 NOUVELLE TENTATIVE (ESPACE OU R)</span>
               </button>
@@ -693,6 +698,92 @@
             <span class="hint-tag"><kbd>P</kbd> Pause</span>
             <span class="hint-tag"><kbd>R</kbd> Reset</span>
             <span class="hint-tag"><kbd>M</kbd> Son</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arcade Hall of Fame & GitHub Leaderboard -->
+      <div class="arcade-leaderboard-section" id="arcadeLeaderboardSection">
+        <!-- Pilot Profile & GitHub Auth Sync -->
+        <div class="arcade-pilot-banner" id="arcadePilotBanner">
+          <div class="pilot-identity">
+            <div class="pilot-avatar-wrapper">
+              <img id="arcadePilotAvatar" src="cat-logo.svg" alt="Avatar du Pilote" class="pilot-avatar">
+              <span class="pilot-online-dot" id="pilotOnlineDot"></span>
+            </div>
+            <div class="pilot-info">
+              <div class="pilot-name-row">
+                <span class="pilot-name" id="arcadePilotName">Pilote Anonyme</span>
+                <span class="badge badge-peach" id="arcadePilotBadge">Invité non certifié</span>
+              </div>
+              <p class="pilot-subtext" id="arcadePilotSubtext">
+                Liez votre compte GitHub pour enregistrer vos records et hisser votre nom au classement galactique !
+              </p>
+            </div>
+          </div>
+
+          <div class="pilot-auth-actions">
+            <!-- Non-connected input form -->
+            <div class="pilot-input-group" id="arcadePilotInputGroup">
+              <span class="gh-at-prefix">@</span>
+              <input type="text" id="arcadeGhInput" class="arcade-gh-input" placeholder="votre-pseudo-github" autocomplete="off" spellcheck="false">
+              <button class="btn btn-secondary btn-sm" id="arcadeGhConnectBtn">
+                <span>🐙 Lier mon GitHub</span>
+              </button>
+            </div>
+            <!-- Connected badge & change account -->
+            <div class="pilot-connected-actions hidden" id="arcadePilotConnectedActions">
+              <div class="pilot-personal-record">
+                <span class="record-label">Mon Record :</span>
+                <span class="record-val" id="pilotPersonalRecord">00000</span>
+              </div>
+              <button class="btn btn-outline btn-sm" id="arcadeGhChangeBtn" title="Changer de compte GitHub">
+                <span>🔄 Changer</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table Card -->
+        <div class="arcade-leaderboard-card">
+          <div class="leaderboard-header">
+            <div class="leaderboard-title-group">
+              <span class="leaderboard-tag">PANTHÉON STELLAIRE • 0% PYTHON • 100% NIXOS</span>
+              <h3 class="leaderboard-title">🏆 Classement Général des As de l'Espace</h3>
+              <p class="leaderboard-desc">Les records officiels enregistrés par la communauté sur le starfighter ChomiamOS.</p>
+            </div>
+            <div class="leaderboard-meta-badge">
+              <span class="pulse-dot"></span>
+              <span>Saison 1 Live • Serveur NixOS</span>
+            </div>
+          </div>
+
+          <div class="leaderboard-table-responsive">
+            <table class="leaderboard-table" id="arcadeLeaderboardTable">
+              <thead>
+                <tr>
+                  <th class="th-rank">Rang</th>
+                  <th class="th-pilot">Pilote GitHub</th>
+                  <th class="th-score">Score Arcade</th>
+                  <th class="th-wave">Vague</th>
+                  <th class="th-kills">Météores</th>
+                  <th class="th-ship">Titre & Spécification</th>
+                </tr>
+              </thead>
+              <tbody id="arcadeLeaderboardBody">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="leaderboard-footer">
+            <div class="leaderboard-footer-tip">
+              <span>💡 <em>Chaque météore scindé en 2 rapporte des points : pulvérisez les fragments pour maximiser votre score !</em></span>
+            </div>
+            <div class="leaderboard-footer-sync">
+              <span class="sync-icon">✔</span>
+              <span>Signature immuable Nix Flake</span>
+            </div>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDashboardShowcase();
   initTerminal();
   initArcadeGame();
+  initArcadeLeaderboard();
   initExcuseGenerator();
   initFaqAccordion();
   initCopyButtons();
@@ -1184,6 +1185,11 @@ function initArcadeGame() {
 
     if (gameOverOverlay) gameOverOverlay.classList.remove('hidden');
     updateHud();
+
+    // Notify Leaderboard & Hall of Fame of score
+    if (typeof window.onArcadeGameOver === 'function') {
+      window.onArcadeGameOver(score, wave, meteorsDestroyed);
+    }
   }
 
   // Hit Meteor & 2-way Split Logic
@@ -1869,5 +1875,370 @@ function initArcadeGame() {
   updateHud();
   gameLoop();
 }
+
+/* ==========================================================================
+   9. ARCADE LEADERBOARD & GITHUB PILOT PROFILES
+   Classement Mondial des Pilotes • Hall of Fame Catppuccin
+   ========================================================================== */
+
+function initArcadeLeaderboard() {
+  const leaderboardBody = document.getElementById('arcadeLeaderboardBody');
+  const pilotAvatar = document.getElementById('arcadePilotAvatar');
+  const pilotOnlineDot = document.getElementById('pilotOnlineDot');
+  const pilotName = document.getElementById('arcadePilotName');
+  const pilotBadge = document.getElementById('arcadePilotBadge');
+  const pilotSubtext = document.getElementById('arcadePilotSubtext');
+  const pilotInputGroup = document.getElementById('arcadePilotInputGroup');
+  const pilotConnectedActions = document.getElementById('arcadePilotConnectedActions');
+  const ghInput = document.getElementById('arcadeGhInput');
+  const connectBtn = document.getElementById('arcadeGhConnectBtn');
+  const changeBtn = document.getElementById('arcadeGhChangeBtn');
+  const personalRecordDisplay = document.getElementById('pilotPersonalRecord');
+  const gameOverAuthBox = document.getElementById('gameOverAuthBox');
+
+  if (!leaderboardBody) return;
+
+  // Initial Hall of Fame community records
+  const DEFAULT_LEADERBOARD = [
+    {
+      login: 'Chomiam',
+      name: 'Chomiam',
+      avatar: 'https://github.com/Chomiam.png',
+      score: 14250,
+      wave: 12,
+      kills: 168,
+      title: 'Grand Architecte du Vibe-Coding 🦀',
+      badge: 'Fondateur',
+      badgeColor: 'badge-mauve'
+    },
+    {
+      login: 'torvalds',
+      name: 'Linus Torvalds',
+      avatar: 'https://github.com/torvalds.png',
+      score: 11800,
+      wave: 10,
+      kills: 134,
+      title: 'Kernel BDFL Indestructible 🐧',
+      badge: 'Kernel God',
+      badgeColor: 'badge-green'
+    },
+    {
+      login: 'catppuccin',
+      name: 'Catppuccin',
+      avatar: 'https://github.com/catppuccin.png',
+      score: 9650,
+      wave: 8,
+      kills: 108,
+      title: 'Palette Divinité Mocha 🐱',
+      badge: 'Thème Master',
+      badgeColor: 'badge-peach'
+    },
+    {
+      login: 'ThePrimeagen',
+      name: 'ThePrimeagen',
+      avatar: 'https://github.com/ThePrimeagen.png',
+      score: 8420,
+      wave: 7,
+      kills: 94,
+      title: 'Neovim Blazingly Fast ⚡',
+      badge: 'Vim Lord',
+      badgeColor: 'badge-blue'
+    },
+    {
+      login: 'mitchellh',
+      name: 'Mitchell Hashimoto',
+      avatar: 'https://github.com/mitchellh.png',
+      score: 7200,
+      wave: 6,
+      kills: 82,
+      title: 'Ghostty & Rust Whisperer 👻',
+      badge: 'CLI Wizard',
+      badgeColor: 'badge-sapphire'
+    },
+    {
+      login: 'NixOS',
+      name: 'Hydra NixOS',
+      avatar: 'https://github.com/NixOS.png',
+      score: 6500,
+      wave: 6,
+      kills: 76,
+      title: 'Pure Flake Immutability ❄️',
+      badge: 'Reproductible',
+      badgeColor: 'badge-teal'
+    }
+  ];
+
+  let currentGhUser = localStorage.getItem('chomiam_gh_user') || null;
+
+  function getCustomScores() {
+    try {
+      return JSON.parse(localStorage.getItem('chomiamos_arcade_custom_scores')) || {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function saveCustomScores(scores) {
+    try {
+      localStorage.setItem('chomiamos_arcade_custom_scores', JSON.stringify(scores));
+    } catch (_) {}
+  }
+
+  // Get full leaderboard merged and sorted
+  function getLeaderboardList() {
+    const list = JSON.parse(JSON.stringify(DEFAULT_LEADERBOARD));
+    const customScores = getCustomScores();
+
+    for (const [login, data] of Object.entries(customScores)) {
+      const existingIdx = list.findIndex(item => item.login.toLowerCase() === login.toLowerCase());
+      if (existingIdx !== -1) {
+        if (data.score > list[existingIdx].score) {
+          list[existingIdx].score = data.score;
+          list[existingIdx].wave = data.wave;
+          list[existingIdx].kills = data.kills;
+        }
+      } else {
+        list.push({
+          login: data.login,
+          name: data.name || data.login,
+          avatar: data.avatar || `https://github.com/${encodeURIComponent(data.login)}.png`,
+          score: data.score,
+          wave: data.wave || 1,
+          kills: data.kills || 0,
+          title: data.title || 'Pilote Certifié Vibe-Coding 🚀',
+          badge: 'Pilote NixOS',
+          badgeColor: 'badge-mauve'
+        });
+      }
+    }
+
+    list.sort((a, b) => b.score - a.score);
+    return list;
+  }
+
+  // Render Leaderboard Table
+  function renderLeaderboard() {
+    const list = getLeaderboardList();
+    leaderboardBody.innerHTML = '';
+
+    list.forEach((entry, index) => {
+      const rank = index + 1;
+      const isUser = currentGhUser && entry.login.toLowerCase() === currentGhUser.toLowerCase();
+
+      let rankDisplay = `#${rank}`;
+      let rankClass = '';
+      if (rank === 1) {
+        rankDisplay = '🥇 1';
+        rankClass = 'rank-1';
+      } else if (rank === 2) {
+        rankDisplay = '🥈 2';
+        rankClass = 'rank-2';
+      } else if (rank === 3) {
+        rankDisplay = '🥉 3';
+        rankClass = 'rank-3';
+      }
+
+      const tr = document.createElement('tr');
+      if (isUser) {
+        tr.className = 'is-current-user';
+      }
+
+      tr.innerHTML = `
+        <td class="rank-cell ${rankClass}">${rankDisplay}</td>
+        <td>
+          <div class="pilot-cell">
+            <img src="${entry.avatar}" alt="${entry.login}" class="pilot-cell-avatar" onerror="this.src='cat-logo.svg'">
+            <div>
+              <a href="https://github.com/${encodeURIComponent(entry.login)}" target="_blank" rel="noopener noreferrer" class="pilot-cell-link">@${entry.login}</a>
+              ${isUser ? '<span class="badge badge-mauve pilot-cell-tag" style="margin-left: 6px;">VOUS</span>' : `<span class="badge ${entry.badgeColor || 'badge-blue'} pilot-cell-tag" style="margin-left: 6px;">${entry.badge || 'Pilote'}</span>`}
+            </div>
+          </div>
+        </td>
+        <td class="score-cell">${String(entry.score).padStart(6, '0')}</td>
+        <td class="wave-cell">Vague ${entry.wave}</td>
+        <td class="kills-cell">${entry.kills} ☄️</td>
+        <td class="ship-cell">${entry.title}</td>
+      `;
+
+      leaderboardBody.appendChild(tr);
+    });
+  }
+
+  // Update Pilot Header Banner
+  function updatePilotBanner(user, avatarUrl) {
+    if (user) {
+      if (pilotAvatar) {
+        pilotAvatar.src = avatarUrl || `https://github.com/${encodeURIComponent(user)}.png`;
+      }
+      if (pilotOnlineDot) {
+        pilotOnlineDot.classList.add('active');
+      }
+      if (pilotName) {
+        pilotName.textContent = `@${user}`;
+      }
+      if (pilotBadge) {
+        pilotBadge.className = 'badge badge-green';
+        pilotBadge.textContent = '✔ Pilote GitHub Certifié';
+      }
+      if (pilotSubtext) {
+        pilotSubtext.textContent = 'Votre compte est lié. Tous vos records sont automatiquement inscrits dans le Hall of Fame !';
+      }
+      if (pilotInputGroup) pilotInputGroup.classList.add('hidden');
+      if (pilotConnectedActions) pilotConnectedActions.classList.remove('hidden');
+
+      const customScores = getCustomScores();
+      const userRecord = customScores[user.toLowerCase()]?.score || localStorage.getItem('chomiamos_arcade_high') || 0;
+      if (personalRecordDisplay) {
+        personalRecordDisplay.textContent = String(userRecord).padStart(5, '0');
+      }
+    } else {
+      if (pilotAvatar) pilotAvatar.src = 'cat-logo.svg';
+      if (pilotOnlineDot) pilotOnlineDot.classList.remove('active');
+      if (pilotName) pilotName.textContent = 'Pilote Anonyme';
+      if (pilotBadge) {
+        pilotBadge.className = 'badge badge-peach';
+        pilotBadge.textContent = 'Invité non certifié';
+      }
+      if (pilotSubtext) {
+        pilotSubtext.textContent = 'Liez votre compte GitHub pour enregistrer vos records et hisser votre nom au classement galactique !';
+      }
+      if (pilotInputGroup) pilotInputGroup.classList.remove('hidden');
+      if (pilotConnectedActions) pilotConnectedActions.classList.add('hidden');
+    }
+  }
+
+  // Connect GitHub User
+  async function connectGitHubUser(rawUsername) {
+    const username = rawUsername.replace(/^@/, '').trim();
+    if (!username) return;
+
+    try {
+      const res = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
+      let avatar = `https://github.com/${encodeURIComponent(username)}.png`;
+      let name = username;
+
+      if (res.ok) {
+        const data = await res.json();
+        currentGhUser = data.login;
+        avatar = data.avatar_url;
+        name = data.name || data.login;
+      } else {
+        currentGhUser = username;
+      }
+
+      localStorage.setItem('chomiam_gh_user', currentGhUser);
+      updatePilotBanner(currentGhUser, avatar);
+
+      // Register high score if already played
+      const savedHigh = parseInt(localStorage.getItem('chomiamos_arcade_high') || '0', 10);
+      if (savedHigh > 0) {
+        const customScores = getCustomScores();
+        const existing = customScores[currentGhUser.toLowerCase()] || {};
+        if (savedHigh > (existing.score || 0)) {
+          customScores[currentGhUser.toLowerCase()] = {
+            login: currentGhUser,
+            name: name,
+            avatar: avatar,
+            score: savedHigh,
+            wave: existing.wave || 1,
+            kills: existing.kills || Math.floor(savedHigh / 60),
+            title: 'Pilote Certifié Vibe-Coding 🚀'
+          };
+          saveCustomScores(customScores);
+        }
+      }
+
+      renderLeaderboard();
+      if (typeof showToast === 'function') {
+        showToast(`🚀 Compte GitHub @${currentGhUser} lié avec succès au classement !`);
+      }
+    } catch (_) {
+      currentGhUser = username;
+      localStorage.setItem('chomiam_gh_user', currentGhUser);
+      updatePilotBanner(currentGhUser, `https://github.com/${encodeURIComponent(username)}.png`);
+      renderLeaderboard();
+    }
+  }
+
+  // Hook Game Over
+  window.onArcadeGameOver = function(finalScore, maxWave, killsCount) {
+    currentGhUser = localStorage.getItem('chomiam_gh_user') || null;
+
+    if (currentGhUser && finalScore > 0) {
+      const customScores = getCustomScores();
+      const existing = customScores[currentGhUser.toLowerCase()] || {};
+      const bestScore = Math.max(finalScore, existing.score || 0);
+
+      customScores[currentGhUser.toLowerCase()] = {
+        login: currentGhUser,
+        name: currentGhUser,
+        avatar: `https://github.com/${encodeURIComponent(currentGhUser)}.png`,
+        score: bestScore,
+        wave: Math.max(maxWave, existing.wave || 1),
+        kills: (existing.kills || 0) + killsCount,
+        title: bestScore > 10000 ? 'Légende Cosmique NixOS 🌟' : 'Pilote Certifié Vibe-Coding 🚀'
+      };
+
+      saveCustomScores(customScores);
+      renderLeaderboard();
+      updatePilotBanner(currentGhUser);
+
+      if (gameOverAuthBox) {
+        gameOverAuthBox.innerHTML = `
+          <span>🏆 Score de <strong>${finalScore} pts</strong> (Vague ${maxWave}) enregistré pour <strong style="color:var(--mauve);">@${currentGhUser}</strong> ! Consultez votre rang ci-dessous.</span>
+        `;
+      }
+    } else {
+      if (gameOverAuthBox) {
+        gameOverAuthBox.innerHTML = `
+          <span>🐙 <strong>${finalScore} pts obtenus !</strong> <a href="#arcadeLeaderboardSection" id="gameOverAuthLink">Liez votre compte GitHub</a> pour faire certifier ce score au classement officiel !</span>
+        `;
+        const link = document.getElementById('gameOverAuthLink');
+        if (link) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const section = document.getElementById('arcadeLeaderboardSection');
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+            if (ghInput) ghInput.focus();
+          });
+        }
+      }
+    }
+  };
+
+  // Event Listeners
+  if (connectBtn && ghInput) {
+    connectBtn.addEventListener('click', () => {
+      connectGitHubUser(ghInput.value);
+      ghInput.value = '';
+    });
+    ghInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        connectGitHubUser(ghInput.value);
+        ghInput.value = '';
+      }
+    });
+  }
+
+  if (changeBtn) {
+    changeBtn.addEventListener('click', () => {
+      if (pilotInputGroup) pilotInputGroup.classList.remove('hidden');
+      if (pilotConnectedActions) pilotConnectedActions.classList.add('hidden');
+      if (ghInput) {
+        ghInput.value = currentGhUser || '';
+        ghInput.focus();
+      }
+    });
+  }
+
+  // Initial Load
+  if (currentGhUser) {
+    updatePilotBanner(currentGhUser);
+  } else {
+    updatePilotBanner(null);
+  }
+  renderLeaderboard();
+}
+
 
 
