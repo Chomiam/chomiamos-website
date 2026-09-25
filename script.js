@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initCopyButtons();
   initLightbox();
+  initBugReportTracker();
 });
 
 /* ==========================================================================
@@ -624,3 +625,95 @@ function initLightbox() {
     }
   });
 }
+
+/* ==========================================================================
+   7. BUG REPORT TRACKER & GITHUB AUTH SIMULATOR
+   ========================================================================== */
+
+function initBugReportTracker() {
+  const authBtn = document.getElementById('bugAuthBtn');
+  const authBtnText = document.getElementById('bugAuthBtnText');
+  const userAvatar = document.getElementById('bugUserAvatar');
+  const userName = document.getElementById('bugUserName');
+  const userStatus = document.getElementById('bugUserStatus');
+  const submitBtn = document.getElementById('bugSubmitBtn');
+
+  if (!submitBtn) return;
+
+  let currentGhUser = localStorage.getItem('chomiam_gh_user') || null;
+
+  async function loadGhUser(username) {
+    try {
+      const res = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
+      if (!res.ok) throw new Error('Utilisateur non trouvé');
+      const data = await res.json();
+      currentGhUser = data.login;
+      localStorage.setItem('chomiam_gh_user', data.login);
+
+      userAvatar.src = data.avatar_url;
+      userName.innerHTML = `<span>@${data.login}</span> <span class="badge" style="background: rgba(166, 227, 161, 0.2); color: var(--green); border: 1px solid var(--green); font-size: 0.7rem;">GitHub Vérifié ✔</span>`;
+      userStatus.textContent = `${data.name ? data.name + ' • ' : ''}${data.public_repos} repos publics sur GitHub`;
+      if (authBtnText) authBtnText.textContent = `Changer de compte (@${data.login})`;
+      showToast(`Connecté avec succès en tant que @${data.login} !`);
+    } catch (e) {
+      showToast('❌ Compte GitHub introuvable. Vérifiez le pseudo saisi.');
+    }
+  }
+
+  if (currentGhUser) {
+    loadGhUser(currentGhUser);
+  }
+
+  if (authBtn) {
+    authBtn.addEventListener('click', () => {
+      const input = prompt('Entrez votre nom d\'utilisateur GitHub (ex: Chomiam, torvalds...) :', currentGhUser || '');
+      if (input && input.trim()) {
+        loadGhUser(input.trim());
+      }
+    });
+  }
+
+  submitBtn.addEventListener('click', () => {
+    const category = document.getElementById('bugCategory').value;
+    const hardware = document.getElementById('bugHardware').value.trim() || 'Non spécifié';
+    const title = document.getElementById('bugTitle').value.trim();
+    const desc = document.getElementById('bugDesc').value.trim();
+    const checkRollback = document.getElementById('checkRollback').checked ? 'Oui' : 'Non';
+    const checkNoPython = document.getElementById('checkNoPython').checked ? 'Oui (Strictement 0% Python)' : 'Non';
+    const checkAiTolerant = document.getElementById('checkAiTolerant').checked ? 'Accepté' : 'Non';
+
+    if (!title || !desc) {
+      showToast('⚠️ Veuillez renseigner un titre et une description du bug !');
+      return;
+    }
+
+    const reporter = currentGhUser ? `@${currentGhUser}` : 'Visiteur anonyme';
+
+    const issueBody = `### 🐛 Description de l'anomalie
+${desc}
+
+---
+
+### 🏷️ Détails techniques
+- **Composant concerné :** ${category}
+- **Configuration matérielle :** ${hardware}
+- **Signalé par :** ${reporter}
+
+### 🛡️ Check-list de survie
+- [x] Rollback NixOS testé : **${checkRollback}**
+- [x] Règle zéro Python respectée : **${checkNoPython}**
+- [x] Tolérance aux hallucinations IA : **${checkAiTolerant}**
+
+---
+*Rapport généré automatiquement depuis le [Bug Tracker officiel ChomiamOS](https://chomiamos-website.vercel.app/#report-bug)*`;
+
+    const repoUrl = 'https://github.com/Chomiam/chomiamos-website/issues/new';
+    const fullUrl = `${repoUrl}?title=${encodeURIComponent('[' + category.toUpperCase() + '] ' + title)}&body=${encodeURIComponent(issueBody)}&labels=bug,vibe-coded`;
+
+    showToast('🚀 Préparation du ticket GitHub... Redirection en cours !');
+    setTimeout(() => {
+      window.open(fullUrl, '_blank');
+    }, 600);
+  });
+}
+
