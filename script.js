@@ -237,8 +237,13 @@ const TERMINAL_COMMANDS = {
   <span class="highlight-mauve">joke</span>           : Générer une punchline de vibe-coding
   <span class="highlight-mauve">tokens</span>         : Consulter notre réserve de tokens IA pour recruter
   <span class="highlight-mauve">testers</span>        : Appel aux armes pour les crash-testeurs
+  <span class="highlight-mauve">thanks</span>         : Crédits et hommages à GLFOS et Catppuccin
   <span class="highlight-mauve">cat vars.nix</span>   : Examiner les variables écrites par le Dashboard
   <span class="highlight-mauve">clear</span>          : Nettoyer la console`,
+
+  thanks: `<span class="highlight-mauve">💖 HOMMAGES & REMERCIEMENTS OFFICIELS :</span>
+- <span class="highlight-peach">🚀 GLFOS (glfos.org) :</span> Un respect infini à l'équipe GLFOS pour avoir été une source d'inspiration monumentale pour ChomiamOS.
+- <span class="highlight-pink">🐱 Catppuccin (catppuccin.com) :</span> Thème tellement divin qu'on a absolument tout copié sans vergogne. Merci pour vos palettes !`,
 
   tokens: `<span class="highlight-peach">🪙 RECRUTEMENT EN TOKENS IA NON TRANSFÉRABLES :</span>
 - <strong>Rémunération horaire :</strong> 12 000 tokens Claude 3.7 + 1 caresse au chat.
