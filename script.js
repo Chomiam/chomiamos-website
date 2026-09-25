@@ -1898,76 +1898,7 @@ function initArcadeLeaderboard() {
 
   if (!leaderboardBody) return;
 
-  // Initial Hall of Fame community records
-  const DEFAULT_LEADERBOARD = [
-    {
-      login: 'Chomiam',
-      name: 'Chomiam',
-      avatar: 'https://github.com/Chomiam.png',
-      score: 14250,
-      wave: 12,
-      kills: 168,
-      title: 'Grand Architecte du Vibe-Coding 🦀',
-      badge: 'Fondateur',
-      badgeColor: 'badge-mauve'
-    },
-    {
-      login: 'torvalds',
-      name: 'Linus Torvalds',
-      avatar: 'https://github.com/torvalds.png',
-      score: 11800,
-      wave: 10,
-      kills: 134,
-      title: 'Kernel BDFL Indestructible 🐧',
-      badge: 'Kernel God',
-      badgeColor: 'badge-green'
-    },
-    {
-      login: 'catppuccin',
-      name: 'Catppuccin',
-      avatar: 'https://github.com/catppuccin.png',
-      score: 9650,
-      wave: 8,
-      kills: 108,
-      title: 'Palette Divinité Mocha 🐱',
-      badge: 'Thème Master',
-      badgeColor: 'badge-peach'
-    },
-    {
-      login: 'ThePrimeagen',
-      name: 'ThePrimeagen',
-      avatar: 'https://github.com/ThePrimeagen.png',
-      score: 8420,
-      wave: 7,
-      kills: 94,
-      title: 'Neovim Blazingly Fast ⚡',
-      badge: 'Vim Lord',
-      badgeColor: 'badge-blue'
-    },
-    {
-      login: 'mitchellh',
-      name: 'Mitchell Hashimoto',
-      avatar: 'https://github.com/mitchellh.png',
-      score: 7200,
-      wave: 6,
-      kills: 82,
-      title: 'Ghostty & Rust Whisperer 👻',
-      badge: 'CLI Wizard',
-      badgeColor: 'badge-sapphire'
-    },
-    {
-      login: 'NixOS',
-      name: 'Hydra NixOS',
-      avatar: 'https://github.com/NixOS.png',
-      score: 6500,
-      wave: 6,
-      kills: 76,
-      title: 'Pure Flake Immutability ❄️',
-      badge: 'Reproductible',
-      badgeColor: 'badge-teal'
-    }
-  ];
-
+  // Classement initial : 100% réel, aucun faux score injecté
   let currentGhUser = localStorage.getItem('chomiam_gh_user') || null;
 
   function getCustomScores() {
@@ -1984,24 +1915,17 @@ function initArcadeLeaderboard() {
     } catch (_) {}
   }
 
-  // Get full leaderboard merged and sorted
+  // Obtenir la liste des scores réels triés
   function getLeaderboardList() {
-    const list = JSON.parse(JSON.stringify(DEFAULT_LEADERBOARD));
+    const list = [];
     const customScores = getCustomScores();
 
     for (const [login, data] of Object.entries(customScores)) {
-      const existingIdx = list.findIndex(item => item.login.toLowerCase() === login.toLowerCase());
-      if (existingIdx !== -1) {
-        if (data.score > list[existingIdx].score) {
-          list[existingIdx].score = data.score;
-          list[existingIdx].wave = data.wave;
-          list[existingIdx].kills = data.kills;
-        }
-      } else {
+      if (data && typeof data.score === 'number' && data.score > 0) {
         list.push({
-          login: data.login,
-          name: data.name || data.login,
-          avatar: data.avatar || `https://github.com/${encodeURIComponent(data.login)}.png`,
+          login: data.login || login,
+          name: data.name || data.login || login,
+          avatar: data.avatar || `https://github.com/${encodeURIComponent(data.login || login)}.png`,
           score: data.score,
           wave: data.wave || 1,
           kills: data.kills || 0,
@@ -2016,10 +1940,24 @@ function initArcadeLeaderboard() {
     return list;
   }
 
-  // Render Leaderboard Table
+  // Rendu du tableau des scores
   function renderLeaderboard() {
     const list = getLeaderboardList();
     leaderboardBody.innerHTML = '';
+
+    if (list.length === 0) {
+      const emptyRow = document.createElement('tr');
+      emptyRow.className = 'leaderboard-empty-row';
+      emptyRow.innerHTML = `
+        <td colspan="6" style="text-align: center; padding: 40px 20px; color: var(--subtext0);">
+          <div style="font-size: 1.8rem; margin-bottom: 10px;">🛸</div>
+          <strong style="color: var(--text); display: block; font-size: 0.98rem; margin-bottom: 6px;">Aucun record enregistré pour l'instant !</strong>
+          <span style="font-size: 0.85rem; max-width: 520px; display: inline-block; line-height: 1.5;">Liez votre compte GitHub ci-dessus, survivez aux météores et devenez le tout premier pilote inscrit au classement officiel de ChomiamOS.</span>
+        </td>
+      `;
+      leaderboardBody.appendChild(emptyRow);
+      return;
+    }
 
     list.forEach((entry, index) => {
       const rank = index + 1;
