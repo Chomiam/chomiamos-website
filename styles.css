@@ -1839,6 +1839,102 @@ code, pre, .mono {
   position: relative;
 }
 
+/* Recruitment & Tester Callout Card */
+.recruit-card {
+  background: linear-gradient(145deg, rgba(30, 30, 46, 0.95), rgba(24, 24, 37, 0.98));
+  border: 1px solid rgba(250, 179, 135, 0.5);
+  border-radius: var(--radius-lg);
+  padding: 36px 38px;
+  box-shadow: 0 0 35px rgba(250, 179, 135, 0.12);
+  margin-bottom: 45px;
+  position: relative;
+  overflow: hidden;
+}
+
+.recruit-card::before {
+  content: 'RECRUTEMENT OUVERT';
+  position: absolute;
+  top: 16px;
+  right: -32px;
+  background: var(--peach);
+  color: var(--crust);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 40px;
+  transform: rotate(45deg);
+  letter-spacing: 0.06em;
+}
+
+.recruit-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.recruit-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.recruit-text-satirical {
+  color: var(--subtext1);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.recruit-serious-callout {
+  background: rgba(17, 17, 27, 0.7);
+  border-left: 3px solid var(--mauve);
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+
+.recruit-serious-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mauve);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recruit-serious-desc {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.recruit-perks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.recruit-perk-chip {
+  background: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--subtext0);
+}
+
+.recruit-perk-chip strong {
+  color: var(--text);
+  display: block;
+  font-size: 0.88rem;
+}
+
 .bug-card {
   background: var(--gradient-card);
   border: 1px solid rgba(203, 166, 247, 0.35);

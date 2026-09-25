@@ -235,8 +235,22 @@ const TERMINAL_COMMANDS = {
   <span class="highlight-mauve">sudo rm -rf /</span>  : Tenter de détruire le système immuable
   <span class="highlight-mauve">git commit</span>     : Générer un commit de pur vibe-coding
   <span class="highlight-mauve">joke</span>           : Générer une punchline de vibe-coding
+  <span class="highlight-mauve">tokens</span>         : Consulter notre réserve de tokens IA pour recruter
+  <span class="highlight-mauve">testers</span>        : Appel aux armes pour les crash-testeurs
   <span class="highlight-mauve">cat vars.nix</span>   : Examiner les variables écrites par le Dashboard
   <span class="highlight-mauve">clear</span>          : Nettoyer la console`,
+
+  tokens: `<span class="highlight-peach">🪙 RECRUTEMENT EN TOKENS IA NON TRANSFÉRABLES :</span>
+- <strong>Rémunération horaire :</strong> 12 000 tokens Claude 3.7 + 1 caresse au chat.
+- <strong>Profil recherché :</strong> Capacité à regarder un écran noir pendant 45s en disant « je crois que ça build ».
+- <strong>Postuler :</strong> Téléchargez l'ISO sur Google Drive, cassez tout et rapportez les bugs !`,
+
+  testers: `<span class="highlight-mauve">🎯 APPEL AUX CRASH-TESTEURS :</span>
+Nous cherchons des testeurs déterminés pour :
+1. <span class="highlight-peach">Simracing :</span> Maltraiter les volants Fanatec, Moza, Simucube, Thrustmaster, Logitech.
+2. <span class="highlight-green">Steam GameScope :</span> Pousser les jeux Windows et l'upscaling FSR en session console.
+3. <span class="highlight-blue">Hardware :</span> Tester sur Nvidia, Intel Arc et laptops hybrides.
+Rendez-vous dans la section <span class="highlight-mauve">#report-bug</span> pour nous ouvrir une Issue GitHub !`,
 
   rust: `<span class="highlight-peach">🦀 rustc 1.85.0 (Borrow Checker Suprême) :</span>
 - <strong>Chomiam Installer</strong> : 100% Rust natif (0 segfault, 0 crash)
