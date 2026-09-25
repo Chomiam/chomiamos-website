@@ -1,0 +1,5 @@
+# Robots.txt pour ChomiamOS
+User-agent: *
+Allow: /
+
+Sitemap: https://chomiamos-website.vercel.app/sitemap.xml

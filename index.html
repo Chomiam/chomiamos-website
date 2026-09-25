@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChomiamOS • L'OS NixOS Indestructible, 100% Vibe-Codé par IA</title>
-  <meta name="description" content="ChomiamOS : La distribution Linux basée sur NixOS avec le Chomiam Dashboard graphique, IA embarquée en local (Ollama/Neovim), et session console Gaming & Sim Racing ultra-optimisée.">
-  <meta name="keywords" content="ChomiamOS, NixOS, Linux, Gaming, Simracing, Catppuccin Mocha, Ollama, Neovim, Gamescope, Vibe Coding">
-  <meta name="author" content="Chomiam & Claude & DeepSeek">
+  
+  <!-- Primary Meta Tags -->
+  <title>ChomiamOS • La Distribution Linux NixOS Indestructible, Gaming & IA</title>
+  <meta name="title" content="ChomiamOS • La Distribution Linux NixOS Indestructible, Gaming & IA">
+  <meta name="description" content="ChomiamOS : Distribution Linux basée sur NixOS avec le Chomiam Dashboard en Rust, session console Steam GameScope, support des volants Simracing FFB et IA locale Ollama.">
+  <meta name="keywords" content="ChomiamOS, NixOS, Linux Gaming, Simracing Linux, Fanatec Linux, Thrustmaster, GameScope, Ollama, Neovim, Catppuccin Mocha, Rust Linux, Distribution Linux, Vibe Coding">
+  <meta name="author" content="Chomiam">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://chomiamos-website.vercel.app/">
+  <meta name="theme-color" content="#1e1e2e">
+  <meta name="color-scheme" content="dark">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chomiamos-website.vercel.app/">
+  <meta property="og:site_name" content="ChomiamOS">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="ChomiamOS • L'OS NixOS Indestructible, Gaming, Sim Racing & IA Locale">
+  <meta property="og:description" content="Toute la puissance chirurgicale de NixOS sans se casser la tête : Dashboard graphique en Rust, session console Steam GameScope, FFB natif pour volants et IA en VRAM.">
+  <meta property="og:image" content="https://chomiamos-website.vercel.app/screenshots/dashboard-system.png">
+  <meta property="og:image:secure_url" content="https://chomiamos-website.vercel.app/screenshots/dashboard-system.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Interface du Chomiam Dashboard sous ChomiamOS">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://chomiamos-website.vercel.app/">
+  <meta name="twitter:title" content="ChomiamOS • L'OS NixOS Indestructible, Gaming & IA">
+  <meta name="twitter:description" content="Distribution Linux NixOS avec Chomiam Dashboard en Rust, FFB Simracing natif, Steam GameScope et IA locale Ollama.">
+  <meta name="twitter:image" content="https://chomiamos-website.vercel.app/screenshots/dashboard-system.png">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="chomiamos-logo.png">
+  <link rel="apple-touch-icon" href="chomiamos-logo.png">
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +46,71 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data JSON-LD (Schema.org) for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "ChomiamOS",
+        "applicationCategory": "OperatingSystem",
+        "operatingSystem": "Linux (NixOS)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Distribution Linux déclarative basée sur NixOS avec Chomiam Dashboard et Installer en Rust, session console Steam GameScope, support des volants Simracing et IA locale.",
+        "author": {
+          "@type": "Person",
+          "name": "Chomiam",
+          "url": "https://github.com/Chomiam"
+        },
+        "image": "https://chomiamos-website.vercel.app/chomiamos-logo.png",
+        "downloadUrl": "https://drive.google.com/drive/folders/1BJGmVafoMhjwk_6xwXqROblK7M6KdagT?usp=drive_link"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Est-ce que 100% de la distribution est vraiment vibe-codée par IA ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolument. Tout ce qui est fonctionnel dans ce système provient de conversations avec des modèles de langage couplées à la rigueur déclarative et immuable de NixOS."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Pourquoi avez-vous banni Python de cette distribution ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pour éliminer les virtualenvs corrompus et les lenteurs. ChomiamOS privilégie les binaires compilés en Rust natif, le Nix pur et les LLMs locaux en VRAM."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment le Chomiam Dashboard modifie-t-il NixOS sans casser le système ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le Dashboard sérialise vos choix graphiques dans /etc/nixos/vars.nix et appelle de manière contrôlée nh os switch. Si une compilation échoue, l'ancien système reste 100% intact."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Mon volant Fanatec ou Thrustmaster va-t-il fonctionner tout de suite ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui ! Le module simracing charge automatiquement les règles udev prioritaires, les modules kernel de retours de force FFB et intègre Oversteer nativement."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
