@@ -242,7 +242,7 @@ const TERMINAL_COMMANDS = {
   <span class="highlight-mauve">clear</span>          : Nettoyer la console`,
 
   thanks: `<span class="highlight-mauve">💖 HOMMAGES & REMERCIEMENTS OFFICIELS :</span>
-- <span class="highlight-peach">🚀 GLFOS (glfos.org) :</span> Un respect infini à l'équipe GLFOS pour avoir été une source d'inspiration monumentale pour ChomiamOS.
+- <span class="highlight-peach">🚀 GLFOS (glfos.org) :</span> C'est grâce à eux qu'on a découvert l'existence de NixOS ! Et leur nouvel installateur nous a donné envie de faire le nôtre en Rust (et surtout pas en Python comme eux). Vive le Rust ! 🦀
 - <span class="highlight-pink">🐱 Catppuccin (catppuccin.com) :</span> Thème tellement divin qu'on a absolument tout copié sans vergogne. Merci pour vos palettes !`,
 
   tokens: `<span class="highlight-peach">🪙 RECRUTEMENT EN TOKENS IA NON TRANSFÉRABLES :</span>
