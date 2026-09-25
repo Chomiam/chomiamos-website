@@ -40,10 +40,10 @@
   <link rel="icon" type="image/png" href="chomiamos-logo.png">
   <link rel="apple-touch-icon" href="chomiamos-logo.png">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts: Inter, JetBrains Mono & Press Start 2P (Arcade) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -142,6 +142,7 @@
         <ul class="nav-links">
           <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
           <li><a href="#gaming" class="nav-link">Gaming & Simracing</a></li>
+          <li><a href="#arcade" class="nav-link">Arcade 👾</a></li>
           <li><a href="#ai-terminal" class="nav-link">IA Embarquée</a></li>
           <li><a href="#report-bug" class="nav-link">Signaler un Bug</a></li>
           <li><a href="#nix-vs-humans" class="nav-link">Nix vs Humains</a></li>
@@ -525,6 +526,178 @@
       </div>
     </section>
 
+    <!-- Terminal Arcade Mini-Game Section -->
+    <section id="arcade" class="arcade-section container" aria-label="Mini-jeu Terminal Arcade">
+      <div class="section-head">
+        <span class="section-tag">ARCADE NIXOS • 0% PYTHON • RETRO GAMING PUR</span>
+        <h2 class="section-title">Terminal Arcade : <span class="gradient-text">Meteor Buster</span></h2>
+        <p class="section-desc">
+          Une fenêtre de terminal Kitty sur-mesure aux couleurs Catppuccin ! Pilotez votre starfighter avec <strong>ZQSD</strong>, ouvrez le feu avec la <strong>touche ESPACE</strong> et anéantissez les météores géants. 
+          Attention : <strong>chaque impact scinde les météores en 2</strong> ! Détruisez-en un maximum avec vos <strong>3 cœurs</strong> de vie.
+        </p>
+      </div>
+
+      <!-- Stylized Arcade Terminal Window -->
+      <div class="terminal-window terminal-arcade-window" id="arcadeTerminalWindow">
+        <!-- Terminal Header with Controls & HUD -->
+        <div class="terminal-header arcade-term-header">
+          <div class="window-dots">
+            <button class="w-dot w-dot-red" id="arcadeDotReset" title="Réinitialiser la mission (R)" aria-label="Réinitialiser"></button>
+            <button class="w-dot w-dot-yellow" id="arcadeDotPause" title="Mettre en pause (P)" aria-label="Pause"></button>
+            <button class="w-dot w-dot-green" id="arcadeDotExpand" title="Agrandir la fenêtre" aria-label="Agrandir"></button>
+          </div>
+          <div class="terminal-title arcade-term-title">
+            <span class="term-title-icon">🐱</span>
+            <span>kitty • nix-shell -p meteor-buster --run "cargo run --release"</span>
+          </div>
+          <div class="arcade-header-status">
+            <div class="arcade-hud-pill">
+              <span class="hud-label">SCORE:</span>
+              <span class="hud-value hud-score" id="arcadeHeaderScore">00000</span>
+            </div>
+            <div class="arcade-hud-pill">
+              <span class="hud-label">VIES:</span>
+              <span class="hud-value hud-hearts" id="arcadeHeaderHearts" aria-label="3 cœurs restants">
+                <span class="arcade-heart active" data-heart="1">❤️</span>
+                <span class="arcade-heart active" data-heart="2">❤️</span>
+                <span class="arcade-heart active" data-heart="3">❤️</span>
+              </span>
+            </div>
+            <button class="arcade-tool-btn" id="arcadeSoundBtn" title="Activer / Couper le son (Touche M)" aria-label="Basculer le son">
+              <span id="arcadeSoundIcon">🔊</span>
+              <span class="sound-text" id="arcadeSoundText">Son ON</span>
+            </button>
+            <button class="arcade-tool-btn" id="arcadeResetBtn" title="Recommencer la mission (Touche R)" aria-label="Recommencer">
+              <span>🔄</span>
+              <span class="btn-text">Reset</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Arcade Screen Viewport -->
+        <div class="arcade-screen-container" id="arcadeScreenContainer" tabindex="0" role="region" aria-label="Écran interactif Meteor Buster">
+          <!-- CRT Scanlines & Vignette Overlay -->
+          <div class="arcade-crt-overlay" aria-hidden="true"></div>
+
+          <!-- HTML5 Game Canvas -->
+          <canvas id="arcadeCanvas" width="900" height="520" aria-label="Jeu Meteor Buster"></canvas>
+
+          <!-- Start Screen Overlay -->
+          <div class="arcade-overlay arcade-overlay-start" id="arcadeStartOverlay">
+            <div class="arcade-overlay-box">
+              <div class="arcade-pixel-badge">CATPPUCCIN MOCHA ARCADE • 60 FPS</div>
+              <h3 class="arcade-retro-title">METEOR BUSTER</h3>
+              <p class="arcade-retro-subtitle">ChomiamOS Aerospace Defense System • Pure Rust Spirit</p>
+
+              <div class="arcade-mission-rules">
+                <div class="rule-item">
+                  <span class="rule-icon">☄️</span>
+                  <span><strong>Division binaire :</strong> Les gros météores se cassent en 2 moyens, puis chaque moyen en 2 petits !</span>
+                </div>
+                <div class="rule-item">
+                  <span class="rule-icon">❤️</span>
+                  <span><strong>3 cœurs de survie :</strong> Tout impact détruit 1 cœur et active un bouclier d'urgence temporaire.</span>
+                </div>
+                <div class="rule-item">
+                  <span class="rule-icon">🏆</span>
+                  <span><strong>Objectif suprême :</strong> Pulvérisez un maximum de météores et battez le record du terminal.</span>
+                </div>
+              </div>
+
+              <!-- Controls Preview -->
+              <div class="arcade-controls-grid">
+                <div class="ctrl-cell"><kbd>Z</kbd> <span>Propulsion avant</span></div>
+                <div class="ctrl-cell"><kbd>Q</kbd> <span>Pivoter à gauche</span></div>
+                <div class="ctrl-cell"><kbd>S</kbd> <span>Rétro-freinage</span></div>
+                <div class="ctrl-cell"><kbd>D</kbd> <span>Pivoter à droite</span></div>
+                <div class="ctrl-cell ctrl-space"><kbd>ESPACE</kbd> <span>Tir Laser Plasma</span></div>
+              </div>
+
+              <button class="btn btn-primary btn-arcade-start" id="arcadeStartBtn">
+                <span>🚀 DÉMARRER LA MISSION (ESPACE)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pause Overlay -->
+          <div class="arcade-overlay arcade-overlay-pause hidden" id="arcadePauseOverlay">
+            <div class="arcade-overlay-box">
+              <h3 class="arcade-retro-title title-pause">PAUSE</h3>
+              <p class="arcade-retro-subtitle">Processus suspendu (SIGSTOP) — Vaisseau en orbite stable</p>
+              <button class="btn btn-primary" id="arcadeResumeBtn">
+                <span>▶ REPRENDRE LA MISSION (P ou ESPACE)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Game Over Overlay -->
+          <div class="arcade-overlay arcade-overlay-gameover hidden" id="arcadeGameOverOverlay">
+            <div class="arcade-overlay-box">
+              <h3 class="arcade-retro-title title-gameover">GAME OVER</h3>
+              <p class="arcade-retro-subtitle">Bouclier thermique anéanti (0 cœur restant)</p>
+
+              <div class="arcade-gameover-stats">
+                <div class="stat-box">
+                  <span class="stat-label">SCORE FINAL</span>
+                  <span class="stat-num stat-score" id="gameOverScore">00000</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">RECORD DU TERMINAL</span>
+                  <span class="stat-num stat-high" id="gameOverHigh">00000</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-label">MÉTÉORES DÉTRUITS</span>
+                  <span class="stat-num stat-kills" id="gameOverKills">0</span>
+                </div>
+              </div>
+
+              <div class="new-record-banner hidden" id="newRecordBanner">
+                🎉 NOUVEAU RECORD HISTORIQUE DU TERMINAL ! 🎉
+              </div>
+
+              <button class="btn btn-primary btn-arcade-start" id="arcadeRestartBtn">
+                <span>🔄 NOUVELLE TENTATIVE (ESPACE OU R)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Touch Controls -->
+        <div class="arcade-touch-controls" id="arcadeTouchControls" aria-label="Contrôles tactiles du vaisseau">
+          <div class="touch-dpad">
+            <button class="touch-btn touch-up" id="touchUp" aria-label="Propulsion">Z ▲</button>
+            <div class="touch-horizontal">
+              <button class="touch-btn touch-left" id="touchLeft" aria-label="Gauche">◄ Q</button>
+              <button class="touch-btn touch-down" id="touchDown" aria-label="Frein">S ▼</button>
+              <button class="touch-btn touch-right" id="touchRight" aria-label="Droite">D ►</button>
+            </div>
+          </div>
+          <div class="touch-actions">
+            <button class="touch-btn touch-fire" id="touchFire" aria-label="Tirer au laser">
+              <span>⚡ TIRER (ESPACE)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terminal Status Bar / Prompt -->
+        <div class="arcade-status-bar">
+          <div class="arcade-cli-line">
+            <span class="term-prompt">chomiam@chomiamos</span>:<span class="term-dir">~/games</span>$ <span class="term-cmd">./meteor-buster --pilot chomiam --theme catppuccin-mocha</span>
+          </div>
+          <div class="arcade-quick-hints">
+            <span class="hint-tag"><kbd>Z</kbd> Propulser</span>
+            <span class="hint-tag"><kbd>Q</kbd> Gauche</span>
+            <span class="hint-tag"><kbd>D</kbd> Droite</span>
+            <span class="hint-tag"><kbd>S</kbd> Frein</span>
+            <span class="hint-tag"><kbd>ESPACE</kbd> Tir</span>
+            <span class="hint-tag"><kbd>P</kbd> Pause</span>
+            <span class="hint-tag"><kbd>R</kbd> Reset</span>
+            <span class="hint-tag"><kbd>M</kbd> Son</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- AI & Interactive Terminal Section -->
     <section id="ai-terminal" class="ai-section container">
       <div class="section-head">
@@ -616,6 +789,7 @@
           <!-- Terminal Input Row -->
           <div class="terminal-quick-buttons">
             <button class="term-chip-btn" data-cmd="help">help</button>
+            <button class="term-chip-btn" data-cmd="game">👾 meteor-buster</button>
             <button class="term-chip-btn" data-cmd="rust">🦀 rust</button>
             <button class="term-chip-btn" data-cmd="nh os switch">nh os switch</button>
             <button class="term-chip-btn" data-cmd="ollama list">ollama list</button>
