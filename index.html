@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChomiamOS • L'OS NixOS Indestructible, 100% Vibe-Codé par IA</title>
+  <meta name="description" content="ChomiamOS : La distribution Linux basée sur NixOS avec le Chomiam Dashboard graphique, IA embarquée en local (Ollama/Neovim), et session console Gaming & Sim Racing ultra-optimisée.">
+  <meta name="keywords" content="ChomiamOS, NixOS, Linux, Gaming, Simracing, Catppuccin Mocha, Ollama, Neovim, Gamescope, Vibe Coding">
+  <meta name="author" content="Chomiam & Claude & DeepSeek">
+  <link rel="icon" type="image/png" href="chomiamos-logo.png">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Animated Mesh Background -->
+  <div class="bg-mesh-canvas" aria-hidden="true">
+    <div class="mesh-orb mesh-orb-1"></div>
+    <div class="mesh-orb mesh-orb-2"></div>
+    <div class="mesh-orb mesh-orb-3"></div>
+  </div>
+  <div class="bg-grid-pattern" aria-hidden="true"></div>
+
+  <!-- Floating Navigation -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Navigation principale">
+      <!-- Brand & Version -->
+      <a href="#hero" class="nav-brand">
+        <span class="brand-icon">
+          <img src="chomiamos-logo.png" alt="ChomiamOS Catppuccin Cat Logo" width="36" height="36">
+        </span>
+        <span>Chomiam<span class="highlight-mauve">OS</span></span>
+        <span class="brand-version-badge" title="Génération active certifiée">
+          <span class="pulse-dot"></span>
+          v0.5.4 • Stable
+        </span>
+      </a>
+
+      <!-- Center: Navigation & GitHub Profile Link -->
+      <div class="nav-center-group">
+        <ul class="nav-links">
+          <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+          <li><a href="#gaming" class="nav-link">Gaming & Simracing</a></li>
+          <li><a href="#ai-terminal" class="nav-link">IA Embarquée</a></li>
+          <li><a href="#nix-vs-humans" class="nav-link">Nix vs Humains</a></li>
+          <li><a href="#faq" class="nav-link">FAQ Absurde</a></li>
+        </ul>
+
+        <!-- GitHub Chomiam Badge in the Middle -->
+        <a href="https://github.com/Chomiam" target="_blank" rel="noopener noreferrer" class="nav-github-badge" title="Visiter le GitHub officiel de Chomiam">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>github.com/Chomiam</span>
+        </a>
+      </div>
+
+      <!-- Action Button: Download via Drive -->
+      <div class="nav-actions">
+        <a href="https://drive.google.com/drive/folders/1BJGmVafoMhjwk_6xwXqROblK7M6KdagT?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" title="Télécharger l'ISO sur Google Drive">
+          <span>💾 Télécharger l'ISO</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section id="hero" class="hero-section container">
+      <div class="hero-pill">
+        <span>✨ 100% Vibe-Codé par IA</span>
+        <span>•</span>
+        <span>0% de Python</span>
+        <span>•</span>
+        <span>0% d'effort humain superflu</span>
+        <span>•</span>
+        <span>NixOS Indestructible</span>
+      </div>
+
+      <h1 class="hero-title">
+        L'OS indestructible pour les geeks <br>
+        <span class="gradient-text">trop flemmards pour coder.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Pourquoi s'infliger 5 ans de théorie des types pour configurer un fichier Nix ? 
+        <strong>ChomiamOS</strong> marie la pureté mathématique de <strong>NixOS</strong>, l'élégance suprême de <strong>Catppuccin Mocha</strong>, et l'incompétence humaine fièrement déléguée à des <strong>LLMs locaux</strong>.
+      </p>
+
+      <div class="hero-actions">
+        <div class="command-wrapper">
+          <div class="command-joke-badge">
+            <span>🪄 Installateur Magique (100% Fictif & Placebo)</span>
+          </div>
+          <div class="command-copy-box">
+            <span class="cmd-prefix">$</span>
+            <span class="cmd-text">curl -sSL https://chomiamos.org/vibe.sh | sh</span>
+            <button class="cmd-copy-btn" data-copy="curl -sSL https://chomiamos.org/vibe.sh | sh" title="Copier cette commande purement imaginaire">
+              <span>Copier du vent</span>
+            </button>
+          </div>
+          <span class="command-disclaimer-note">
+            ⚠️ <em>Ne collez pas ça : ce domaine n'existe pas ! C'est pour le style. Pour installer, prenez l'ISO à droite.</em>
+          </span>
+        </div>
+
+        <a href="https://drive.google.com/drive/folders/1BJGmVafoMhjwk_6xwXqROblK7M6KdagT?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg" style="height: fit-content; align-self: center;">
+          <span>💾 La Vraie ISO (Google Drive)</span>
+          <span>→</span>
+        </a>
+        <a href="#dashboard" class="btn btn-secondary btn-lg" style="height: fit-content; align-self: center;">
+          <span>Explorer le Dashboard GUI</span>
+        </a>
+      </div>
+
+      <!-- Real Live Specs Chips -->
+      <div class="hero-specs-grid">
+        <div class="spec-chip">
+          <div class="spec-icon" style="color: var(--peach);">⚡</div>
+          <div class="spec-meta">
+            <span class="spec-label">Processeur Déclaratif</span>
+            <span class="spec-value">AMD Zen & Intel Core (Schedulers)</span>
+          </div>
+        </div>
+        <div class="spec-chip">
+          <div class="spec-icon" style="color: var(--mauve);">🎮</div>
+          <div class="spec-meta">
+            <span class="spec-label">GPU & Sim Racing</span>
+            <span class="spec-value">AMD • NVIDIA • Intel Arc • FFB</span>
+          </div>
+        </div>
+        <div class="spec-chip">
+          <div class="spec-icon" style="color: var(--green);">🧠</div>
+          <div class="spec-meta">
+            <span class="spec-label">Inférence Locale GPU</span>
+            <span class="spec-value">Ollama • Qwen 2.5 Coder 7B</span>
+          </div>
+        </div>
+        <div class="spec-chip">
+          <div class="spec-icon" style="color: var(--blue);">❄️</div>
+          <div class="spec-meta">
+            <span class="spec-label">Générations Bootables</span>
+            <span class="spec-value">Rollback en 2.0 secondes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Humorous Live Metrics Banner -->
+    <section class="container" style="padding-bottom: 20px;">
+      <div style="background: rgba(24, 24, 37, 0.7); border: 1px solid var(--surface0); border-radius: var(--radius-md); padding: 16px 24px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 20px; font-family: var(--font-mono); font-size: 0.84rem; text-align: center;">
+        <div>
+          <span style="color: var(--mauve); font-weight: bold; font-size: 1.2rem; display: block;">4 850 000+</span>
+          <span style="color: var(--subtext0);">Tokens IA consommés</span>
+        </div>
+        <div>
+          <span style="color: var(--green); font-weight: bold; font-size: 1.2rem; display: block;">0.00%</span>
+          <span style="color: var(--subtext0);">Lignes de Python tolérées</span>
+        </div>
+        <div>
+          <span style="color: var(--peach); font-weight: bold; font-size: 1.2rem; display: block;">#219</span>
+          <span style="color: var(--subtext0);">Générations sans crash fatal</span>
+        </div>
+        <div>
+          <span style="color: var(--sapphire); font-weight: bold; font-size: 1.2rem; display: block;">100%</span>
+          <span style="color: var(--subtext0);">Flemme intellectuelle assumée</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Satirical Disclaimer Banner (Anti-Marketing Honnête) -->
+    <section id="disclaimer" class="disclaimer-section container">
+      <div class="disclaimer-card">
+        <div class="disclaimer-header">
+          <span class="disclaimer-icon">🚨</span>
+          <h2 class="disclaimer-title">AVERTISSEMENT OFFICIEL DE LA DIRECTION SANS LANGUE DE BOIS</h2>
+        </div>
+        <div class="disclaimer-body">
+          <p>
+            Cette distribution n'a <strong>pas</strong> été conçue par une armée d'ingénieurs austères en col roulé. Elle a été assemblée à 3h du matin par un prompt-engineer armé d'un clavier mécanique bruyant, balançant des prompts chaotiques à Claude et DeepSeek jusqu'à ce que NixOS compile enfin sans hurler à la mort.
+          </p>
+          <p>
+            Attendez-vous à des surprises cosmiques et des comportements émergents fascinants. Si votre session Wayland se met soudainement à clignoter en rose bonbon ou refuse d'ouvrir Steam parce que la température de sampling du LLM était trop élevée, <strong>ne nous écrivez pas : nous sommes en train de dormir ou de rouler sur le Nürburgring</strong>. Tapez simplement <code>nixos-rebuild switch --rollback</code> et laissez le chat Catppuccin gérer votre karma.
+          </p>
+        </div>
+        <div class="disclaimer-footer">
+          <span>Garantie constructeur : 0.0%</span>
+          <span>Niveau de flemme : 100%</span>
+          <span>Beauté visuelle : 10/10</span>
+          <span>Dose de Python : ZÉRO ABSOLU</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Dashboard Showcase Section (The Star) -->
+    <section id="dashboard" class="showcase-section container">
+      <div class="section-head">
+        <span class="section-tag">LE COEUR DE CHOMIAMOS</span>
+        <h2 class="section-title">Le Chomiam Dashboard</h2>
+        <p class="section-desc">
+          Toute la puissance chirurgicale de NixOS, entièrement pilotable à la souris dans une interface Catppuccin Mocha somptueuse. Adieu les 450 pages de manuel Nix.
+        </p>
+      </div>
+
+      <!-- Real Screenshots Tabs Selector -->
+      <div class="dashboard-tabs-container" id="dashboardTabs" role="tablist">
+        <!-- Dynamically rendered by script.js -->
+      </div>
+
+      <!-- Dashboard Mockup Window Frame -->
+      <div class="dashboard-viewport">
+        <div class="dashboard-window-header">
+          <div class="window-dots">
+            <span class="w-dot w-dot-red"></span>
+            <span class="w-dot w-dot-yellow"></span>
+            <span class="w-dot w-dot-green"></span>
+          </div>
+          <div class="window-title-bar">
+            <span>🐱 ChomiamOS Control Center — /etc/nixos/vars.nix</span>
+          </div>
+          <div class="window-actions">
+            <button class="btn-fullscreen" id="fullscreenBtn" title="Agrandir en haute résolution">
+              <span>⛶ Plein Écran</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="screenshot-display-area">
+          <img 
+            id="dashboardScreenshot" 
+            class="dashboard-screenshot-img" 
+            src="screenshots/dashboard-system.png" 
+            alt="Chomiam Dashboard Aperçu Système"
+            data-full-src="screenshots/dashboard-system.png"
+            data-title="Vue d'Ensemble Système & Test Débit 4K/eSport"
+          >
+        </div>
+
+        <div class="dashboard-meta-panel">
+          <div class="meta-content">
+            <div class="meta-tagline" id="dashboardMetaTag">Moniteurs & Maintenance</div>
+            <h3 class="meta-title" id="dashboardMetaTitle">Vue d'Ensemble Système & Test Débit 4K/eSport</h3>
+            <p class="meta-description" id="dashboardMetaDesc">
+              Surveillance hardware en temps réel de vos ressources système (CPU, GPU, RAM, Disques). Mettez à jour tout votre système en un clic avec commit signé GitHub (`git pull & nh os switch`), ou mesurez votre gigue et débit avec le speedtest intégré sans ouvrir un navigateur énergivore.
+            </p>
+          </div>
+          <div class="meta-highlights" id="dashboardHighlights">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rust Supremacy & The Language Roaster Section -->
+    <section class="rust-section container">
+      <div class="section-head">
+        <span class="rust-badge-pill">🦀 100% RUST NATIF • ZÉRO ELECTRON • ZÉRO PYTHON</span>
+        <h2 class="section-title">Chomiam Dashboard & Installer : Codés en Pur Rust</h2>
+        <p class="section-desc">
+          Parce qu'un système d'exploitation sérieux ne devrait jamais gaspiller 4 Go de RAM pour afficher une fenêtre.
+        </p>
+      </div>
+
+      <div class="lang-grid">
+        <!-- Rust (Winner) -->
+        <div class="lang-card winner">
+          <div class="lang-header">
+            <span class="lang-icon">🦀</span>
+            <div>
+              <h3 class="lang-title">Rust (Chomiam Core)</h3>
+              <span class="badge badge-peach" style="font-size: 0.7rem;">Dashboard & Installer</span>
+            </div>
+          </div>
+          <p class="lang-desc">
+            Le Chomiam Installer et le Dashboard sont compilés en binaire natif ultra-rapide. Borrow checker certifié, mémoire garantie, zéro fuite, zéro garbage collector. Ça démarre en 3 millisecondes chrono.
+          </p>
+          <div class="lang-stat-row">
+            <span>Conso Mémoire : <strong class="lang-stat-val" style="color: var(--green);">~14 Mo</strong></span>
+            <span>Boot : <strong class="lang-stat-val" style="color: var(--green);">3 ms</strong></span>
+          </div>
+        </div>
+
+        <!-- Python (Roasted) -->
+        <div class="lang-card">
+          <div class="lang-header">
+            <span class="lang-icon">🐍</span>
+            <div>
+              <h3 class="lang-title">Python</h3>
+              <span class="badge badge-mauve" style="font-size: 0.7rem; color: var(--red); border-color: var(--red);">Strictement Banni</span>
+            </div>
+          </div>
+          <p class="lang-desc">
+            Veuillez patienter pendant que pip télécharge 600 Mo de dépendances pour planter sur un `ImportError` parce qu'il manque un espace sur la ligne 42 d'un script en carton.
+          </p>
+          <div class="lang-stat-row">
+            <span>Conso Mémoire : <strong class="lang-stat-val" style="color: var(--red);">350 Mo</strong></span>
+            <span>Crash : <strong class="lang-stat-val" style="color: var(--red);">Garantis</strong></span>
+          </div>
+        </div>
+
+        <!-- Electron (Roasted) -->
+        <div class="lang-card">
+          <div class="lang-header">
+            <span class="lang-icon">⚡</span>
+            <div>
+              <h3 class="lang-title">Electron / JS</h3>
+              <span class="badge badge-mauve" style="font-size: 0.7rem; color: var(--peach); border-color: var(--peach);">Le Glouton</span>
+            </div>
+          </div>
+          <p class="lang-desc">
+            Embarquer une instance complète de Google Chrome et 80 processus Node.js pour afficher 3 toggles et une jauge ? Non merci, on garde notre RAM pour Cyberpunk 2077.
+          </p>
+          <div class="lang-stat-row">
+            <span>Conso Mémoire : <strong class="lang-stat-val" style="color: var(--peach);">1.8 Go</strong></span>
+            <span>Chauffe CPU : <strong class="lang-stat-val" style="color: var(--peach);">+15°C</strong></span>
+          </div>
+        </div>
+
+        <!-- C / C++ (Roasted) -->
+        <div class="lang-card">
+          <div class="lang-header">
+            <span class="lang-icon">💣</span>
+            <div>
+              <h3 class="lang-title">C / C++</h3>
+              <span class="badge badge-mauve" style="font-size: 0.7rem; color: var(--yellow); border-color: var(--yellow);">Le Russe Roulette</span>
+            </div>
+          </div>
+          <p class="lang-desc">
+            C'est très rapide, jusqu'à ce qu'un pointeur fou écrase l'espace d'adressage de votre noyau parce qu'un tableau a débordé d'un octet en 1998. Segfault à 2h du matin.
+          </p>
+          <div class="lang-stat-row">
+            <span>Sécurité Mémoire : <strong class="lang-stat-val" style="color: var(--yellow);">0%</strong></span>
+            <span>Segfault : <strong class="lang-stat-val" style="color: var(--yellow);">Inévitable</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gaming & Sim Racing Section -->
+    <section id="gaming" class="gaming-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">0 COMPROMIS SUR LES FPS</span>
+          <h2 class="section-title">Gaming Extrême & Sim Racing Natif</h2>
+          <p class="section-desc">
+            Windows n'a plus aucune excuse pour squatter votre SSD. ChomiamOS intègre la stack complète des pilotes de simulation et des sessions console optimisées au micro-poil.
+          </p>
+        </div>
+
+        <div class="gaming-grid">
+          <!-- Card 1: Sim Racing -->
+          <div class="gaming-card">
+            <div class="card-badge">
+              <span class="badge badge-peach">🏎️ Plug & Play</span>
+            </div>
+            <span class="gaming-icon">🏎️</span>
+            <h3 class="card-title">Sim Racing & Retour de Force</h3>
+            <p class="card-desc">
+              Finie la galère des modules DKMS qui sautent après chaque update. Oversteer et les drivers de retours de force FFB sont activés nativement pour Direct Drive, Logitech (G29, G923, Pro), Fanatec et Thrustmaster. On ressent chaque vibreur dans les bras.
+            </p>
+            <ul class="feature-pill-list">
+              <li class="feature-pill">Direct Drive</li>
+              <li class="feature-pill">Fanatec FFB</li>
+              <li class="feature-pill">Oversteer GUI</li>
+              <li class="feature-pill">Zero Latency Udev</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: Gamescope -->
+          <div class="gaming-card">
+            <div class="card-badge">
+              <span class="badge badge-mauve">🕹️ Expérience Console</span>
+            </div>
+            <span class="gaming-icon">📺</span>
+            <h3 class="card-title">Session Steam GameScope</h3>
+            <p class="card-desc">
+              Transformez votre tour de combat en console Steam Deck de salon. Démarrez directement dans le compositor ultra-léger GameScope de Valve en HDR/4K sans lancer GNOME ni gaspiller 1 Mo de VRAM pour un explorateur de fichiers.
+            </p>
+            <ul class="feature-pill-list">
+              <li class="feature-pill">Steam Big Picture</li>
+              <li class="feature-pill">HDR & FSR Upscaling</li>
+              <li class="feature-pill">VRR & G-Sync</li>
+              <li class="feature-pill">MangoHud Overlay</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: Émulation -->
+          <div class="gaming-card">
+            <div class="card-badge">
+              <span class="badge badge-blue">👾 Rétrogaming Ultime</span>
+            </div>
+            <span class="gaming-icon">🕹️</span>
+            <h3 class="card-title">EmulationStation-DE & Emudeck</h3>
+            <p class="card-desc">
+              13 émulateurs préconfigurés et intégrés dans EmulationStation Desktop Edition. Branchez votre manette Xbox ou DualSense, vos partitions de ROMs Btrfs sont montées automatiquement sans jamais taper un `mount` en sudo.
+            </p>
+            <ul class="feature-pill-list">
+              <li class="feature-pill">ES-DE Ready</li>
+              <li class="feature-pill">RetroArch Optimisé</li>
+              <li class="feature-pill">Subvolumes Btrfs</li>
+              <li class="feature-pill">Scraper Automatique</li>
+            </ul>
+          </div>
+
+          <!-- Card 4: Hardware Auto-Profiles -->
+          <div class="gaming-card">
+            <div class="card-badge">
+              <span class="badge badge-green">⚡ Optimisation Auto</span>
+            </div>
+            <span class="gaming-icon">🚀</span>
+            <h3 class="card-title">Profils AMD, NVIDIA & Intel</h3>
+            <p class="card-desc">
+              ChomiamOS détecte automatiquement votre matériel et applique les patches de kernel optimaux : Mesa RADV pour les nouvelles Radeon RX 9000, Wayland sans scintillement pour NVIDIA, ou Intel Arc Xe. Zéro prise de tête.
+            </p>
+            <ul class="feature-pill-list">
+              <li class="feature-pill">Mesa RADV Bleeding</li>
+              <li class="feature-pill">Kernel Zen 7.2</li>
+              <li class="feature-pill">GameMode Feral</li>
+              <li class="feature-pill">Sunshine / Moonlight</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & Interactive Terminal Section -->
+    <section id="ai-terminal" class="ai-section container">
+      <div class="section-head">
+        <span class="section-tag">LE PARADIS DU VIBE-CODING</span>
+        <h2 class="section-title">L'IA Embarquée dans le Système</h2>
+        <p class="section-desc">
+          Pourquoi taper du code quand une armée de modèles de langage open-source tourne déjà localement sur votre GPU ?
+        </p>
+      </div>
+
+      <div class="ai-terminal-layout">
+        <div class="ai-content">
+          <h3>Un copilote qui vit sur votre carte graphique. Pas chez Sam Altman.</h3>
+          <p>
+            ChomiamOS intègre un service <strong>Ollama</strong> accéléré par GPU et synchronisé avec <strong>Neovim (nvim)</strong> et votre shell de prédilection. 
+            Aucun compte à créer, aucune carte de crédit, 100% de vos idées (et de vos bugs) restent bien au chaud sur votre SSD NVMe.
+          </p>
+
+          <ul class="ai-feature-checklist">
+            <li class="ai-feature-item">
+              <span class="ai-feature-icon">✔</span>
+              <div class="ai-feature-text">
+                <strong>Complétion Neovim Ultra-Basse Latence</strong>
+                <span>Qwen 2.5 Coder 7B préchargé en VRAM : suggestions de code en moins de 15ms.</span>
+              </div>
+            </li>
+            <li class="ai-feature-item">
+              <span class="ai-feature-icon">✔</span>
+              <div class="ai-feature-text">
+                <strong>CLI Assisté par <code>aichat</code></strong>
+                <span>Posez vos questions existentielles directement dans votre terminal sans ouvrir Firefox.</span>
+              </div>
+            </li>
+            <li class="ai-feature-item">
+              <span class="ai-feature-icon">✔</span>
+              <div class="ai-feature-text">
+                <strong>Modèles Légers Téléchargeables au Clic</strong>
+                <span>Passez à la volée sur Qwen 3B, 1.5B Plume ou DeepSeek R1 8B pour vos calculs.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" data-copy="ollama run qwen2.5-coder:7b">
+              <span>📋 Copier: ollama run qwen</span>
+            </button>
+            <button class="btn btn-outline btn-sm" data-copy="aichat 'explique le kernel zen'">
+              <span>📋 Copier: aichat</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Terminal Interactive Window -->
+        <div class="terminal-window" aria-label="Terminal interactif ChomiamOS">
+          <div class="terminal-header">
+            <div class="window-dots">
+              <span class="w-dot w-dot-red"></span>
+              <span class="w-dot w-dot-yellow"></span>
+              <span class="w-dot w-dot-green"></span>
+            </div>
+            <div class="terminal-title">
+              <span>kitty • fish 4.0.0 — ollama active — 0% python</span>
+            </div>
+            <span class="badge badge-mauve" style="font-size: 0.68rem;">TERMINAL LIVE</span>
+          </div>
+
+          <div class="terminal-body" id="terminalBody">
+            <div class="term-line">
+              <span class="term-prompt">chomiam@chomiamos</span>:<span class="term-dir">~</span>$ <span class="highlight-mauve">fastfetch</span>
+            </div>
+            <div class="term-output">
+              <span class="highlight-mauve">
+       /\_____/\       </span><span class="highlight-blue">chomiam</span>@<span class="highlight-mauve">chomiamos</span>
+      /  o   o  \      ---------------
+     ( ==  ^  == )     <span class="highlight-peach">OS:</span> ChomiamOS 26.05 (Mocha x86_64)
+      )         (      <span class="highlight-peach">Kernel:</span> 7.2.7-zen1-chomiam
+     (           )     <span class="highlight-peach">DE:</span> COSMIC / GNOME / Gamescope
+    ( (  )   (  ) )    <span class="highlight-peach">CPU:</span> AMD Ryzen / Intel Core (Auto-Tuning)
+   (__(__)___(__)__)   <span class="highlight-peach">GPU:</span> AMD Radeon / NVIDIA / Intel Arc
+                       <span class="highlight-peach">AI Engine:</span> Qwen 2.5 Coder 7B (En VRAM)
+                       <span class="highlight-peach">Python:</span> 0.00% (Banni par décret)
+                       <span class="highlight-peach">Creator:</span> github.com/Chomiam
+            </div>
+            <div class="term-line" style="color: var(--overlay1);">
+              💡 <em>Tapez une commande ou cliquez sur les suggestions ci-dessous :</em>
+            </div>
+          </div>
+
+          <!-- Terminal Input Row -->
+          <div class="terminal-quick-buttons">
+            <button class="term-chip-btn" data-cmd="help">help</button>
+            <button class="term-chip-btn" data-cmd="rust">🦀 rust</button>
+            <button class="term-chip-btn" data-cmd="nh os switch">nh os switch</button>
+            <button class="term-chip-btn" data-cmd="ollama list">ollama list</button>
+            <button class="term-chip-btn" data-cmd="aichat 'Pourquoi Nix ?'">aichat</button>
+            <button class="term-chip-btn" data-cmd="python">python ?</button>
+            <button class="term-chip-btn" data-cmd="electron">electron ?</button>
+            <button class="term-chip-btn" data-cmd="sudo rm -rf /">sudo rm -rf /</button>
+            <button class="term-chip-btn" data-cmd="rollback">rollback</button>
+            <button class="term-chip-btn" data-cmd="joke">joke</button>
+          </div>
+
+          <div style="background: var(--crust); padding: 10px 18px; border-top: 1px solid var(--surface0); display: flex; align-items: center; gap: 8px;">
+            <span class="term-prompt">chomiam@chomiamos:~$</span>
+            <input type="text" id="terminalInput" class="term-input" placeholder="Tapez une commande (ex: help, python, rollback, joke)..." autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nix vs Humans Comparison Table -->
+    <section id="nix-vs-humans" class="comparison-section container">
+      <div class="section-head">
+        <span class="section-tag">LE MATCH DU SIÈCLE</span>
+        <h2 class="section-title">NixOS vs Les Humains</h2>
+        <p class="section-desc">
+          Pourquoi continuer à souffrir avec des scripts shell de 2004 quand le futur est déclaratif, reproductible et vibe-codé ?
+        </p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Critère d'Évaluation</th>
+              <th>Distributions Classiques (Arch, Ubuntu)</th>
+              <th>NixOS Vanilla Pure</th>
+              <th class="col-chomiam">🐱 ChomiamOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="comp-criterion">Installation d'un paquet</td>
+              <td><code>apt install</code> (qui casse 3 dépendances au passage)</td>
+              <td>Écrire 45 lignes de syntaxe Nix dans <code>flake.nix</code></td>
+              <td class="col-chomiam">Un clic dans la Logithèque Nix avec anti-conflits</td>
+            </tr>
+            <tr>
+              <td class="comp-criterion">En cas de catastrophe / Kernel panic</td>
+              <td>Pleurer sur Reddit avec une clé USB Live</td>
+              <td>Rollback en CLI (si vous vous rappelez de la commande)</td>
+              <td class="col-chomiam">Bouton Rollback ou sélection au boot : rétabli en 2s</td>
+            </tr>
+            <tr>
+              <td class="comp-criterion">Sim Racing & Volants FFB</td>
+              <td>Compiler 3 modules kernel à la main qui sautent au reboot</td>
+              <td>Écrire des règles udev ésotériques à la bougie</td>
+              <td class="col-chomiam">Toggle Oversteer dans le Dashboard : Direct Drive prêt</td>
+            </tr>
+            <tr>
+              <td class="comp-criterion">IA & Autocomplétion Neovim</td>
+              <td>Payer 20$/mois à Microsoft Copilot pour se faire espionner</td>
+              <td>Installer Ollama et galérer 3 jours avec ROCm/CUDA</td>
+              <td class="col-chomiam">Ollama + Qwen 7B préconfigurés en VRAM dès le boot</td>
+            </tr>
+            <tr>
+              <td class="comp-criterion">Politique vis-à-vis de Python</td>
+              <td>Pip installe des paquets partout dans <code>/usr/lib</code></td>
+              <td>Nécessite <code>python3.withPackages</code> et un aspirine</td>
+              <td class="col-chomiam">0% Python. Votre système est sain et pur.</td>
+            </tr>
+            <tr>
+              <td class="comp-criterion">Effort humain requis</td>
+              <td>Élevé (Syndrome de l'administrateur en sueur)</td>
+              <td>Inhumain (Théoriciens de la catégorie des monoïdes)</td>
+              <td class="col-chomiam">Minimal absolu (On balance des prompts et on joue)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- AI Excuse / Hallucination Generator Widget -->
+    <section class="hallucination-section container">
+      <div class="hallucination-box">
+        <span class="badge badge-peach">🤖 LE JUSTIFICATEUR DE BUGS VIBE-CODÉ v1.0</span>
+        <h3 style="font-size: 1.6rem; margin-top: 14px;">Une anomalie sur votre machine ? C'est prévu.</h3>
+        
+        <div class="hallucination-quote" id="excuseQuote">
+          « Le modèle 7B a confondu `systemd` avec un poème symboliste du XIXe siècle. Le kernel a adoré la prose. »
+        </div>
+
+        <button class="btn btn-accent btn-md" id="excuseBtn">
+          <span>🎲 Halluciner une autre excuse officielle</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section container">
+      <div class="section-head">
+        <span class="section-tag">QUESTIONS COMPLÈTEMENT LÉGITIMES</span>
+        <h2 class="section-title">Foire Aux Questions Décomplexée</h2>
+        <p class="section-desc">
+          Tout ce que vous n'avez jamais osé demander de peur qu'un puriste d'Arch Linux vous jette un pavé.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" type="button">
+            <span>Est-ce que 100% de la distribution est vraiment vibe-codée par IA ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Absolument. Nous sommes incapables d'écrire une dérivation Nix sans déclencher 12 erreurs de récursion infinie. Tout ce qui est fonctionnel dans ce système provient de conversations acharnées à pas d'heure avec des LLMs. Si le système marche aussi bien, c'est grâce au génie architectural des fondateurs de NixOS et à l'obstination des intelligences artificielles.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Pourquoi avez-vous banni Python de cette distribution ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Parce que la vie est trop courte pour passer 3 heures à réparer un <code>virtualenv</code> corrompu, résoudre des conflits de versions entre deux scripts qui veulent des NumPy différents, ou chercher pourquoi un script plante à cause d'une tabulation cachée. Chez ChomiamOS, on aime les binaires rapides, le Rust bien typé, le pur Nix déclaratif, et les LLMs qui travaillent pendant qu'on pilote en Sim Racing.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Comment le Chomiam Dashboard modifie-t-il NixOS sans casser le système ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Le Dashboard agit comme une surcouche déclarative saine : au lieu de tripoter des fichiers critiques à l'aveugle, il sérialise vos choix graphiques dans <code>/etc/nixos/vars.nix</code> et <code>custom-packages.nix</code>, puis appelle de manière contrôlée <code>nh os switch</code>. Si une compilation échoue, l'ancien système reste 100% intact.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Mon volant Fanatec ou Thrustmaster va-t-il fonctionner tout de suite ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Oui ! Le module simracing de ChomiamOS charge automatiquement les règles udev prioritaires, les modules kernel de retours de force FFB et intègre Oversteer. Vous branchez votre base Direct Drive en USB, vous lancez votre simu préférée sous Proton GE ou Steam GameScope, et la télémétrie vibre directement dans vos bras.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Est-ce qu'Ollama ralentit mes jeux quand je joue ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Pas du tout. Le Dashboard vous permet de mettre le modèle en veille ou de libérer la VRAM avant de lancer une session Steam GameScope. Vous pouvez aussi choisir un modèle ultra-léger (Qwen 1.5B) qui n'occupe qu'un seul gigaoctet de mémoire.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Et si j'ai un bug vraiment bizarre ?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Redémarrez sur la génération précédente dans le menu de boot (vous avez au moins 3 générations de secours intactes). Ensuite, lancez <code>aichat</code> dans votre terminal et expliquez-lui ce qui s'est passé : l'IA réparera ses propres erreurs sans vous juger.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="cta" class="cta-section container">
+      <div class="cta-card">
+        <span class="badge badge-mauve" style="margin-bottom: 16px;">PRÊT POUR LA RÉVOLUTION DE LA FLEMME ?</span>
+        <h2 class="cta-title">Passez sur <span class="gradient-text">ChomiamOS</span> dès aujourd'hui.</h2>
+        <p class="cta-desc">
+          Rejoignez les utilisateurs qui préfèrent jouer en 4K et laisser l'intelligence artificielle s'occuper de la plomberie Linux.
+        </p>
+        <div class="hero-actions" style="margin-bottom: 0;">
+          <a href="https://drive.google.com/drive/folders/1BJGmVafoMhjwk_6xwXqROblK7M6KdagT?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+            <span>🚀 Télécharger l'ISO (Google Drive)</span>
+          </a>
+          <button class="btn btn-secondary btn-lg" data-copy="nix flake clone github:chomiam/chomiamos">
+            <span>❄️ Copier le Flake Nix</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">
+            <img src="chomiamos-logo.png" alt="ChomiamOS Logo" width="30" height="30" style="border-radius: 50%;">
+            <span>ChomiamOS</span>
+          </div>
+          <p class="footer-brand-p">
+            La distribution Linux déclarative, propulsée par NixOS, sublimée par Catppuccin Mocha, et vibe-codée avec amour et désinvolture par intelligence artificielle par <a href="https://github.com/Chomiam" target="_blank" rel="noopener noreferrer" style="color: var(--mauve); font-weight: bold;">@Chomiam</a>.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-column">
+            <h4>Écosystème</h4>
+            <ul>
+              <li><a href="#dashboard">Chomiam Dashboard</a></li>
+              <li><a href="#gaming">Gaming & GameScope</a></li>
+              <li><a href="#gaming">Sim Racing & Oversteer</a></li>
+              <li><a href="#ai-terminal">Ollama & Neovim</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Ressources</h4>
+            <ul>
+              <li><a href="https://github.com/Chomiam" target="_blank" rel="noopener">GitHub @Chomiam</a></li>
+              <li><a href="https://nixos.org" target="_blank" rel="noopener">NixOS Documentation</a></li>
+              <li><a href="https://github.com/catppuccin/catppuccin" target="_blank" rel="noopener">Thème Catppuccin</a></li>
+              <li><a href="https://ollama.com" target="_blank" rel="noopener">Modèles Ollama</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h4>Philosophie</h4>
+            <ul>
+              <li><a href="#hero">100% Vibe-Coding</a></li>
+              <li><a href="#nix-vs-humans">Pourquoi pas Arch ?</a></li>
+              <li><a href="#disclaimer">Disclaimer Alpha</a></li>
+              <li><a href="#terminalBody">Terminal Kitty</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 ChomiamOS • Conçu par <a href="https://github.com/Chomiam" target="_blank" rel="noopener noreferrer" style="color: var(--mauve);">@Chomiam</a> • Aucun code humain n'a été maltraité durant la conception.
+        </div>
+        <div>
+          <span>0.00% Python • 100% Déclaratif • Licence WTFPL</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Screenshots -->
+  <div class="modal-lightbox" id="modalLightbox" role="dialog" aria-modal="true" aria-label="Agrandissement de capture d'écran">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="lightboxCloseBtn" title="Fermer (Échap)">✕</button>
+      <img id="lightboxImg" class="modal-img" src="" alt="Capture zoomée">
+      <div id="lightboxCaption" class="modal-caption"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
