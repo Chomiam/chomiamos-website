@@ -13,7 +13,44 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
   initLightbox();
   initBugReportTracker();
+  initAnalyticsTracking();
 });
+
+/**
+ * Envoi d'événements personnalisés Vercel Web Analytics (RGPD & Cookieless)
+ */
+function trackVercelEvent(name, data = {}) {
+  if (typeof window.va === 'function') {
+    try {
+      window.va('event', { name, ...data });
+    } catch (e) {
+      // Ignoré silencieusement en local ou si bloqué
+    }
+  }
+}
+
+/**
+ * Suivi analytique des interactions clés (Dons, Liens GitHub, ISO Drive)
+ */
+function initAnalyticsTracking() {
+  document.querySelectorAll('a[href*="buymeacoffee.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackVercelEvent('click_buymeacoffee');
+    });
+  });
+
+  document.querySelectorAll('a[href*="github.com/Chomiam"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackVercelEvent('click_github', { url: link.href });
+    });
+  });
+
+  document.querySelectorAll('a[href*="r2.dev"], a[href$=".iso"], a[href*="drive.google.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackVercelEvent('click_download_iso', { url: link.href });
+    });
+  });
+}
 
 /* ==========================================================================
    1. DASHBOARD SHOWCASE TABS DATA & LOGIC
@@ -270,7 +307,7 @@ const TERMINAL_COMMANDS = {
   tokens: `<span class="highlight-peach">🪙 RECRUTEMENT EN TOKENS IA NON TRANSFÉRABLES :</span>
 - <strong>Rémunération horaire :</strong> 12 000 tokens Claude 3.7 + 1 caresse au chat.
 - <strong>Profil recherché :</strong> Capacité à regarder un écran noir pendant 45s en disant « je crois que ça build ».
-- <strong>Postuler :</strong> Téléchargez l'ISO sur Google Drive, cassez tout et rapportez les bugs !`,
+- <strong>Postuler :</strong> Téléchargez l'ISO en direct, cassez tout et rapportez les bugs !`,
 
   testers: `<span class="highlight-mauve">🎯 APPEL AUX CRASH-TESTEURS :</span>
 Nous cherchons des testeurs déterminés pour :
@@ -452,7 +489,7 @@ function initTerminal() {
       appendOutput(cmd, `
         <span class="highlight-red">curl: (6) Could not resolve host: chomiamos.org</span><br>
         <span class="highlight-peach">🐱 [VIBE-WATCHDOG] :</span> On vous avait prévenu juste sous le bouton ! Ce script est 100% fictif et parodique.<br>
-        L'IA n'a pas encore acheté le domaine. Pour installer pour de vrai, téléchargez l'ISO sur le <strong>Google Drive</strong> !
+        L'IA n'a pas encore acheté le domaine. Pour installer pour de vrai, téléchargez l'ISO directement avec le gros bouton de téléchargement !
       `);
       return;
     }
@@ -585,6 +622,7 @@ function initCopyButtons() {
       if (!textToCopy) return;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
+        trackVercelEvent('copy_command', { command: textToCopy.slice(0, 50) });
         btn.classList.add('copied');
         const originalText = btn.innerHTML;
         btn.innerHTML = '<span>✓ Vent Copié !</span>';
