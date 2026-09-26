@@ -484,6 +484,89 @@ code, pre, .mono {
   box-shadow: 0 6px 24px rgba(250, 179, 135, 0.5);
 }
 
+/* Buy Me a Coffee Button (Catppuccin & Official BMC Yellow Harmony) */
+.btn-bmc {
+  background: #FFDD00;
+  color: #11111b !important;
+  border-color: #FFDD00;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(255, 221, 0, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-bmc:hover {
+  background: #ffea52;
+  color: #11111b !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(255, 221, 0, 0.55);
+  border-color: #ffea52;
+}
+
+.btn-bmc:active {
+  transform: translateY(0);
+}
+
+.btn-bmc svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.btn-bmc.btn-sm svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-bmc.btn-lg svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Floating Buy Me a Coffee Pill Widget */
+.bmc-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 990;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFDD00;
+  color: #11111b !important;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 221, 0, 0.4);
+  border: 1px solid rgba(255, 221, 0, 0.85);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.bmc-floating-btn:hover {
+  background: #ffea52;
+  color: #11111b !important;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.6), 0 0 28px rgba(255, 221, 0, 0.65);
+}
+
+.bmc-floating-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.bmc-floating-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -3257,6 +3340,32 @@ code, pre, .mono {
   }
   .arcade-gh-input {
     width: 100%;
+  }
+}
+
+/* Buy Me a Coffee Responsive */
+@media (max-width: 680px) {
+  .nav-bmc-text {
+    display: none;
+  }
+  .btn-bmc.btn-sm {
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bmc-floating-btn {
+    bottom: 16px;
+    left: 16px;
+    padding: 10px;
+    border-radius: 50%;
+  }
+  .bmc-floating-btn span {
+    display: none;
+  }
+  .bmc-floating-btn svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
